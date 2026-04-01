@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chad AI — Главная</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
+        .gradient-free { background: linear-gradient(135deg, #059669 0%, #10b981 100%); }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900">
+
+    <nav class="fixed w-full z-50 bg-white/80 backdrop-blur-lg border-b border-slate-100">
+        <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="text-2xl font-black tracking-tighter text-emerald-600">CHAD AI</div>
+            <a href="chat.html" class="gradient-free text-white px-7 py-2.5 rounded-xl font-bold hover:shadow-emerald-200 hover:shadow-xl transition active:scale-95 text-sm">
+                Попробовать
+            </a>
+        </div>
+    </nav>
+
+    <section class="pt-40 pb-24 px-6 text-center">
+        <div class="max-w-4xl mx-auto">
+            <div class="inline-flex items-center gap-2 bg-emerald-100 text-emerald-700 px-4 py-1.5 rounded-full text-xs font-black uppercase tracking-widest mb-8">
+                100% Free & Open Source
+            </div>
+            
+            <h1 class="text-5xl md:text-7xl font-extrabold mb-8 leading-tight tracking-tight">
+                Интеллект для всех, <br><span class="text-emerald-600">а не для избранных</span>
+            </h1>
+            <p class="text-xl text-slate-500 mb-12 max-w-2xl mx-auto">
+                Chad AI — это свободная нейросеть, созданная сообществом. Без лимитов, без подписок, без цензуры.
+            </p>
+            
+            <div class="flex flex-col sm:flex-row justify-center gap-5">
+                <a href="chat.html" class="bg-slate-900 text-white px-10 py-4 rounded-2xl font-bold hover:bg-slate-800 transition shadow-xl active:scale-95 text-center">
+                    Запустить в браузере
+                </a>
+                
+                <a href="https://github.com" target="_blank" class="bg-white border-2 border-slate-200 px-10 py-4 rounded-2xl font-bold hover:border-emerald-500 hover:text-emerald-600 transition text-center">
+                    Скачать код
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 bg-white">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="p-8 bg-slate-50 rounded-3xl border-2 border-transparent hover:border-emerald-500 transition shadow-sm cursor-pointer">
+                    <div class="text-4xl mb-4">🔓</div>
+                    <h3 class="text-xl font-bold mb-2">Никаких подписок</h3>
+                    <p class="text-slate-500 text-sm">Все функции доступны сразу. Мы не просим данные вашей карты.</p>
+                </div>
+                <div class="p-8 bg-slate-50 rounded-3xl border-2 border-transparent hover:border-emerald-500 transition shadow-sm cursor-pointer">
+                    <div class="text-4xl mb-4">💻</div>
+                    <h3 class="text-xl font-bold mb-2">Локальный запуск</h3>
+                    <p class="text-slate-500 text-sm">Вы можете скачать модель и запустить её на своём компьютере.</p>
+                </div>
+                <div class="p-8 bg-slate-50 rounded-3xl border-2 border-transparent hover:border-emerald-500 transition shadow-sm cursor-pointer">
+                    <div class="text-4xl mb-4">🌍</div>
+                    <h3 class="text-xl font-bold mb-2">Для людей</h3>
+                    <p class="text-slate-500 text-sm">Проект поддерживается донатами сообщества и энтузиастами.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-12 bg-slate-900 text-emerald-500/80 text-center text-sm font-medium">
+        <p>Сделано с ❤️ для свободного интернета. Chad AI 2026.</p>
+    </footer>
+
+</body>
+</html>

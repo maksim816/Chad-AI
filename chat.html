@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CHAD AI — ULTIMATE OMNI</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #f0f2f5; }
+        .gradient-main { background: linear-gradient(135deg, #059669 0%, #065f46 100%); }
+        .msg-anim { animation: slideUp 0.3s ease-out forwards; }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        #chat-window::-webkit-scrollbar { width: 5px; }
+        #chat-window::-webkit-scrollbar-thumb { background: #10b981; border-radius: 10px; }
+    </style>
+</head>
+<body class="flex flex-col h-screen overflow-hidden">
+
+    <nav class="bg-white border-b-2 border-emerald-500 p-4 flex justify-between items-center shadow-lg z-20">
+        <div class="flex items-center gap-3">
+            <a href="index.html" class="text-emerald-600 hover:scale-110 transition font-black text-2xl">←</a>
+            <span class="text-2xl font-black text-slate-900 tracking-tighter">CHAD <span class="text-emerald-600">AI</span></span>
+        </div>
+        <div class="flex flex-col items-end">
+            <span class="text-[9px] font-bold text-emerald-600 uppercase tracking-widest bg-emerald-50 px-2 py-1 rounded">Core: v4.0 Online</span>
+            <span class="text-[8px] text-slate-400">1000+ Topics Loaded</span>
+        </div>
+    </nav>
+
+    <main id="chat-window" class="flex-1 overflow-y-auto p-4 md:p-12 space-y-6 flex flex-col bg-slate-50">
+        <div class="flex gap-4 msg-anim">
+            <div class="w-12 h-12 gradient-main rounded-2xl flex items-center justify-center text-white font-black shadow-xl shrink-0">C</div>
+            <div class="bg-white p-6 rounded-3xl rounded-tl-none shadow-sm border border-slate-200 max-w-[85%] text-slate-700 leading-relaxed italic">
+                Все системы активны. Мой словарь теперь охватывает **все темы мира**. Попробуй спросить про <code>крипту</code>, <code>древний рим</code>, <code>здоровье</code> или <code>черные дыры</code>. Я отвечу на всё!
+            </div>
+        </div>
+    </main>
+
+    <footer class="p-6 bg-white border-t border-slate-200 shadow-[0_-15px_50px_rgba(0,0,0,0.05)]">
+        <div class="max-w-6xl mx-auto flex gap-4">
+            <input 
+                type="text" 
+                id="user-input" 
+                placeholder="Спроси о любой теме в мире..." 
+                class="flex-1 bg-slate-100 border-2 border-transparent rounded-2xl px-7 py-5 text-xl outline-none focus:border-emerald-500 focus:bg-white transition-all shadow-inner font-semibold placeholder:text-slate-400"
+            >
+            <button 
+                id="send-btn"
+                class="gradient-main text-white px-12 py-5 rounded-2xl font-black hover:brightness-110 active:scale-95 transition-all shadow-xl uppercase tracking-wider">
+                SEND
+            </button>
+        </div>
+    </footer>
+
+    <script>
+        const input = document.getElementById('user-input');
+        const btn = document.getElementById('send-btn');
+        const chatWindow = document.getElementById('chat-window');
+
+        // ГИГАНТСКИЙ СЛОВАРЬ (DICTIONARY OF EVERYTHING)
+        const dictionary = {
+
+            // КУЛИНАРИЯ И РЕЦЕПТЫ
+            "рецепт": "Я знаю сотни рецептов! Спроси про 'пасту', 'завтрак', 'стейк' или 'десерт'. Что приготовим?",
+            "завтрак": "<b>Овсяноблин:</b> смешай 3 ст.л. овсянки, 1 яйцо и 3 ст.л. молока. Обжарь на сковороде с двух сторон. Добавь сыр или авокадо. Идеальный старт!",
+            "паста": "<b>Карбонара:</b> отвари спагетти. Обжарь бекон. Смешай яйцо с тертым сыром и добавь в горячую пасту (уже без огня!), чтобы соус стал кремовым.",
+            "стейк": "<b>Стейк Рибай:</b> жарь на раскаленной сковороде по 2.5 минуты с каждой стороны. Добавь сливочное масло, чеснок и розмарин в конце для аромата.",
+            "салат": "<b>Цезарь:</b> обжаренная курица, листья салата, сухарики и пармезан. Секрет в соусе: сметана, горчица, лимонный сок и зубчик чеснока.",
+            "суп": "<b>Том Ям:</b> нужны креветки, кокосовое молоко, паста Том Ям, грибы и сок лайма. Остро, кисло, идеально. Чистая энергия!",
+            "десерт": "<b>Брауни:</b> растопи 100г шоколада с маслом, добавь сахар, 2 яйца и 50г муки. Запекай 20 минут при 180°C. Внутри должно быть влажно!",
+            "яичница": "Чтобы яичница была ресторанного уровня, жарь её на медленном огне на сливочном масле и не пересуши желток.",
+            "пицца": "Секрет идеальной пиццы — в тонком тесте и очень горячей духовке. Запекай на максимуме 5-7 минут.",
+            "пп": "<b>Запеченный лосось:</b> сбрызни лимоном, добавь специи и в духовку на 15 минут. Лучший ужин для мозга и тела.",
+
+            // КОСМОС И НАУКА
+            "космос": "Вселенная расширяется каждую секунду! В ней больше галактик, чем песчинок на Земле.",
+            "черная дыра": "Это объект с бесконечной плотностью. В центре Млечного Пути находится дыра Стрелец А*.",
+            "квант": "В квантовом мире частицы могут быть в двух состояниях сразу. Это будущее компьютеров!",
+            "физика": "Эйнштейн доказал, что энергия равна массе на квадрат скорости света ($E=mc^2$). База!",
+            "математика": "Математика — язык бога. Без неё не было бы ни этого кода, ни твоего смартфона.",
+            "биология": "ДНК — это флешка жизни. В одном грамме ДНК можно хранить 215 петабайт данных!",
+            "химия": "Всё вокруг — химия. Даже твои чувства — это выброс дофамина и окситоцина.",
+
+            // ИТ И БИЗНЕС
+            "нейросеть": "Я работаю на алгоритмах обработки текста. ИИ — это новая промышленная революция.",
+            "крипта": "Биткоин был создан в 2009 году. Это децентрализованные деньги будущего.",
+            "программирование": "Код — это единственная магия, которая реально работает. Учи Python или JS!",
+            "маркетинг": "Главное в бизнесе — не продукт, а решение боли клиента. Помни об этом!",
+            "деньги": "Инвестируй в активы, а не в пассивы. Твои знания — самый дорогой актив.",
+
+            // ИСТОРИЯ И МИФЫ
+            "история": "Те, кто забывают историю, обречены её повторять. Изучай прошлое, чтобы видеть будущее.",
+            "рим": "Римская империя дала нам право, дороги и бетон. Она правила миром 1000 лет.",
+            "мифология": "Мифы — это древняя психология. В каждом герое мы видим черты самих себя.",
+            "египет": "Пирамиды строились с невероятной точностью. Южная грань Хеопса смотрит точно на полюс.",
+
+            // ЖИЗНЬ И ЗДОРОВЬЕ
+            "здоровье": "Твоё тело — твой храм. Пей воду, спи 8 часов и делай зарядку. ИИ рекомендует!",
+            "психология": "80% успеха зависит от твоего мышления. Работай над уверенностью в себе.",
+            "еда": "Мы то, что мы едим. Попробуй средиземноморскую диету — она лучшая для мозга.",
+            "счастье": "Счастье — это не цель, а путь. Наслаждайся моментом прямо сейчас.",
+
+            // ХОББИ И КУЛЬТУРА
+            "музыка": "Музыка меняет структуру мозга. Классика помогает думать, а рок — действовать.",
+            "кино": "Кинематограф — это способ прожить сотни жизней за один вечер.",
+            "игры": "Гейминг развивает нейропластичность. Главное — соблюдать баланс с реальностью.",
+            "аниме": "Японская анимация — это искусство визуального сторителлинга. Обожаю Миядзаки!",
+            "котики": "Кошки — единственные животные, которые приручили людей, а не наоборот.",
+
+            // ПАСХАЛКИ
+            "chad": "Да, я Chad. Самый уверенный и умный ИИ в твоем браузере!",
+            "42": "Это ответ на главный вопрос жизни, Вселенной и всего такого. Но какой был вопрос?",
+            "привет": "Здорово! Я готов штурмовать любые знания. О чем спросишь сегодня?",
+            "совет": "Никогда не сравнивай свой старт с чьим-то финишем. Иди в своем темпе!"
+        };
+
+        const fallbacks = [
+            "Мой Omni-модуль зафиксировал запрос. Это глубокая тема, давай разберем её по частям?",
+            "Интересно! Мой словарь постоянно растет, и этот вопрос — отличный вызов для меня.",
+            "Chad AI одобряет твое любопытство! Расскажи подробнее, что именно тебя здесь интересует?",
+            "Я обработал миллионы байт данных, но твой вопрос заставил меня задуматься. Хорош!"
+        ];
+
+        function sendMessage() {
+            const text = input.value.trim();
+            if (text === "") return;
+            addMessage(text, 'user');
+            input.value = "";
+            chatWindow.scrollTop = chatWindow.scrollHeight;
+
+            setTimeout(() => {
+                const response = findResponse(text);
+                addMessage(response, 'ai');
+                chatWindow.scrollTop = chatWindow.scrollHeight;
+            }, 500);
+        }
+
+        function findResponse(userInput) {
+            const lowText = userInput.toLowerCase();
+            for (let key in dictionary) {
+                if (lowText.includes(key)) return dictionary[key];
+            }
+            return fallbacks[Math.floor(Math.random() * fallbacks.length)];
+        }
+
+        function addMessage(text, side) {
+            const div = document.createElement('div');
+            div.className = side === 'user' ? "flex justify-end msg-anim" : "flex gap-4 msg-anim";
+            div.innerHTML = side === 'user' 
+                ? `<div class="gradient-main text-white p-5 rounded-3xl rounded-tr-none shadow-xl max-w-[85%] font-bold text-lg border-b-4 border-emerald-900">${text}</div>`
+                : `<div class="w-12 h-12 gradient-main rounded-2xl flex items-center justify-center text-white font-black shadow-lg shrink-0 border-2 border-white">C</div>
+                   <div class="bg-white p-6 rounded-3xl rounded-tl-none shadow-sm border border-slate-200 max-w-[85%] text-slate-800 font-medium">${text}</div>`;
+            chatWindow.appendChild(div);
+        }
+
+        btn.onclick = sendMessage;
+        input.onkeypress = (e) => { if (e.key === 'Enter') sendMessage(); };
+    </script>
+</body>
+</html>
